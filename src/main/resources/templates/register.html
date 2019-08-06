@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"> <!-- 自动补上项目名 -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<p class="text-danger" th:text="${status == null ? '' : status.message}"></p> <br />
+	<a th:href="@{/list}">用户列表</a>
+	<a th:href="@{/register}">用户注册</a> <!-- Get方法 -->
+	<!-- Form模版可以从这里copy：https://getbootstrap.com/docs/3.4/css/#forms -->
+	<form action="register" method="post">
+	  <div class="form-group">
+	    <label for="username">Username</label>
+	    <input type="text" name="username" class="form-control" id="username" placeholder="请输入登录名"> <!-- 点击之后Focus -->
+	  </div>
+	  <div class="form-group">
+	    <label for="password">Password</label>
+	    <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
+	  </div>
+	  <div class="form-group">
+	    <label for="nickName">Nick Name</label>
+	    <input type="text" name="nickName" class="form-control" id="nickName" placeholder="你的昵称是啥">
+	  </div>
+	  <div class="form-group">
+	    <label for="age">Age</label>
+	    <input type="text" name="age" class="form-control" id="age" placeholder="年龄">
+	  </div>
+	  <div class="form-group">
+	    <label for="location">Location</label>
+	    <input type="text" name="location" class="form-control" id="location" placeholder="你的地址 ">
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</body>
+</html>
