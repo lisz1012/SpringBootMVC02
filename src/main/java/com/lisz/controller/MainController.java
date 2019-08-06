@@ -1,6 +1,8 @@
 package com.lisz.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lisz.entity.Account;
 import com.lisz.service.AcountService;
@@ -21,9 +25,22 @@ public class MainController {
 	private AcountService accountService;
 	
 	@GetMapping("/list")
-	public String list(Model model) {
-		accountService.findAll();
-		return "list";
+	@ResponseBody //节省点时间，不搞前端页面了，用@ResponseBody即可
+	public Object list(Model model) { //这里由于用了@ResponseBody，返回的accounts会被转化成一个JSON数组在前端显示，这里返回Object即可,List<Account>也行
+		List<Account> accounts = accountService.findAll();
+		//model.addAttribute("accounts", accounts);
+		System.out.println(ToStringBuilder.reflectionToString(accounts, ToStringStyle.MULTI_LINE_STYLE));
+		return accounts;
+	}
+	
+	@GetMapping("/list/{id}")
+	@ResponseBody //节省点时间，不搞前端页面了，用@ResponseBody即可
+	public Object findAccountById(@PathVariable Integer id, Model model) { //这里由于用了@ResponseBody，返回的accounts会被转化成一个JSON数组在前端显示，这里返回Object即可,List<Account>也行
+		Account account = accountService.findById(id);
+		System.out.println("id = " + id);
+		//model.addAttribute("accounts", accounts);
+		System.out.println(ToStringBuilder.reflectionToString(account, ToStringStyle.MULTI_LINE_STYLE));
+		return account;
 	}
 	
 	@GetMapping("/register")
