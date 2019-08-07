@@ -33,7 +33,7 @@ public class AcountService {
 		} catch (Exception e) {
 			return new ResponseStatus(500, "发生错误", e.getMessage());
 		}
-		return ResponseStatus.build(200);
+		return ResponseStatus.build(200);//成功也会在html上显示ok
 	}
 	
 }
