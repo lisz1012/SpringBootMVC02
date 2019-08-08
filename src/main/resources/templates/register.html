@@ -9,7 +9,7 @@
 <body>
 	<p class="text-danger" th:text="${status == null ? '' : status.message}"></p> <br />
 	<a th:href="@{/list}">用户列表</a>
-	<a th:href="@{/register}">用户注册</a> <!-- Get方法 -->
+	<a th:href="@{/register}">用户注册</a> <!-- Get方法, 刷新就点击它，为的是不用每次刷新的时候resend -->
 	<!-- Form模版可以从这里copy：https://getbootstrap.com/docs/3.4/css/#forms -->
 	<form action="register" method="post">
 	  <div class="form-group">
