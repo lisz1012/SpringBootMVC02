@@ -18,13 +18,18 @@ public class AcountService {
 	private AccountDao accountDao;
 	
 	public List<Account> findAll() {
-		List<Account> list = accountDao.findAll();
+		//List<Account> list = accountDao.findAll();
+		List<Account> list = accountDao.findByIdBetween(2, 12);
 		return list;
 	}
 
 	public Account findById(Integer id) {
 		Optional<Account> optional = accountDao.findById(id); //也可以用findById，只不过会返回一个Optional<Account>, 但是@ResponseBody返回前端后，这个类型也可以被显示
 		return optional.get();								//用JpaRepository的getOne方法会报错
+	}
+	
+	public Account findByUsernameAndPassword(String username, String password) {
+		return accountDao.findByUsernameAndPassword(username, password);
 	}
 
 	public ResponseStatus save(Account account) {

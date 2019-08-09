@@ -43,6 +43,12 @@ public class MainController {
 		return account;
 	}
 	
+	@GetMapping("/findByUsernameAndPassword")
+	@ResponseBody
+	public Object findByUsernameAndPassword() {
+		return accountService.findByUsernameAndPassword("wangx", "123");
+	}
+	
 	@GetMapping("/register")
 	public String registerGet() {
 		System.out.println("Get");
