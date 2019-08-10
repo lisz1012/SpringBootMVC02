@@ -31,6 +31,14 @@ public class AcountService {
 	public Account findByUsernameAndPassword(String username, String password) {
 		return accountDao.findByUsernameAndPassword(username, password);
 	}
+	
+	public List<Account> findByHQL() {
+		return accountDao.findByHQL();
+	}
+	
+	public List<Account> findByHQL2(int id) {
+		return accountDao.findByHQL2(2);
+	}
 
 	public ResponseStatus save(Account account) {
 		try {

@@ -38,7 +38,7 @@ public class MainController {
 	public Object findAccountById(@PathVariable Integer id, Model model) { //这里由于用了@ResponseBody，返回的accounts会被转化成一个JSON数组在前端显示，这里返回Object即可,List<Account>也行
 		Account account = accountService.findById(id);
 		System.out.println("id = " + id);
-		//model.addAttribute("accounts", accounts);
+		//model.addAttribute("accounts", accounts); //这么写的话要用thymeleaf的<tr th:each="account : ${accounts}">去取
 		System.out.println(ToStringBuilder.reflectionToString(account, ToStringStyle.MULTI_LINE_STYLE));
 		return account;
 	}
@@ -47,6 +47,18 @@ public class MainController {
 	@ResponseBody
 	public Object findByUsernameAndPassword() {
 		return accountService.findByUsernameAndPassword("wangx", "123");
+	}
+	
+	@GetMapping("/findByHQL")
+	@ResponseBody
+	public Object findByHQL() {
+		return accountService.findByHQL();
+	}
+	
+	@GetMapping("/findByHQL2")
+	@ResponseBody
+	public Object findByHQL2() {
+		return accountService.findByHQL2(2);
 	}
 	
 	@GetMapping("/register")
